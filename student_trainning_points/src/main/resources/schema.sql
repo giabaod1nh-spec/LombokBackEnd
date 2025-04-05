@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS users (
+  User_id VARCHAR(255) PRIMARY KEY,
+  Password VARCHAR(255) NOT NULL,
+  Role_id INT
+);
+
+CREATE TABLE IF NOT EXISTS roles (
+  Role_id INT PRIMARY KEY AUTO_INCREMENT,
+  Role_name VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS permission (
+  Permission_id INT PRIMARY KEY AUTO_INCREMENT,
+  Permission_name VARCHAR(255) NOT NULL,
+  Description TEXT NOT NULL
+);
+
+ALTER TABLE `users` ADD CONSTRAINT `fk_users_roles` FOREIGN KEY (`Role_id`) REFERENCES `roles` (`Role_id`);
